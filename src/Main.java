@@ -19,12 +19,12 @@ public class Main {
             int whatToDo;
             do {
                 while (!scanner.hasNextInt()) {
-                    System.out.println("Error! Choose from below");
+                    System.out.println("Error! Choose from above");
                     scanner.next();
                 }
                 whatToDo = scanner.nextInt();
                 if (whatToDo < 0 || whatToDo > 5) {
-                    System.out.println("Error! Choose from below");
+                    System.out.println("Error! Choose from above");
                 }
             } while (whatToDo < 0 || whatToDo > 5);
 
