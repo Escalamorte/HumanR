@@ -1,15 +1,14 @@
-public class NetSal {
-        private double minSal = 200;
-        private double maxSal = 8000;
-        double net;
+class NetSal {
+        double calcSal (double gross) {
+            double net;
+            double minSal = 200;
+            double maxSal = 8000;
 
-
-        public double calcSal (double a) {
-            if (a > 8000) {
-                net = a - ((a - 8000) * 0.14) - ((a - 200) * 0.3) - 6 - (a * 0.5) ;
-            } else {
-                net = a * 0.14;
-            }
-            return net;
+//            if (gross > maxSal) {
+//                net = gross - ((gross - maxSal) * 0.14) - ((gross - minSal) * 0.3) - 6 - (gross * 0.5) ;
+//            } else {
+//                net = gross * 0.14;
+//            }
+            return gross;
         }
 }

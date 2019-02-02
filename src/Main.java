@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -34,11 +35,16 @@ public class Main {
                         System.out.println("Employee List is empty!");
                     } else {
                         for (int i = 0; i <= employee.empID.size() - 1; i++) {
-                            System.out.print("\n" + employee.empID.get(i));
-                            System.out.print("\t" + " | " +employee.empFirstName.get(i) + " ");
-                            System.out.print(employee.empLastName.get(i));
-                            System.out.print("\t" + " | " + employee.empSalary.get(i));
-                            System.out.print("\t" + " | " + employee.empStatus.get(i));
+                            try {
+                                System.out.print("\n" + employee.empID.get(i));
+                                System.out.print("\t" + " | " + employee.empFirstName.get(i) + " ");
+                                System.out.print(employee.empLastName.get(i));
+                                System.out.print("\t" + " | " + employee.empSalary.get(i));
+                                System.out.print("\t" + " | " + employee.empStatus.get(i));
+                            }
+                            catch (ArrayIndexOutOfBoundsException arr) {
+                                System.out.println(arr);
+                            }
                         }
                     }
                     break;
@@ -48,13 +54,29 @@ public class Main {
                     System.out.println("Enter Last name: ");
                     String lastName = scanner.next();
                     System.out.println("Enter Salary: ");
-                    double salary = scanner.nextDouble();
+                    double salary;
+                        do {
+                            while (!scanner.hasNextDouble()) {
+                                System.out.println("Error! Enter correct value");
+                                scanner.next();
+                            }
+                            salary = scanner.nextDouble();
+                            if (salary < 0) {
+                                System.out.println("Error! Salary must be greater 0");
+                            }
+                        } while (salary < 0);
 
+
+                    try {
                     employee.empID.add(employee.empID.size() + 1);
                     employee.empFirstName.add(firstName);
                     employee.empLastName.add(lastName);
                     employee.empSalary.add(salary);
                     employee.empStatus.add("active");
+                    }
+                    catch (InputMismatchException inp) {
+                        System.out.println(inp);
+                    }
 
                     System.out.println("Employee " + employee.empFirstName.get(employee.empID.size() - 1) + " "
                             + employee.empLastName.get(employee.empID.size() - 1)
@@ -69,12 +91,17 @@ public class Main {
                     if (idEdit > employee.empID.size()) {
                         System.out.println("Error. Employee ID not found!");
                     } else {
-                        System.out.println("Enter First name: ");
-                        employee.empFirstName.set(idEdit, scanner.next());
-                        System.out.println("Enter Last name: ");
-                        employee.empLastName.set(idEdit, scanner.next());
-                        System.out.println("Enter Salary: ");
-                        employee.empSalary.set(idEdit, scanner.nextDouble());
+                        try {
+                            System.out.println("Enter First name: ");
+                            employee.empFirstName.set(idEdit, scanner.next());
+                            System.out.println("Enter Last name: ");
+                            employee.empLastName.set(idEdit, scanner.next());
+                            System.out.println("Enter Salary: ");
+                            employee.empSalary.set(idEdit, scanner.nextDouble());
+                        }
+                        catch (InputMismatchException e) {
+                            System.out.println(e);
+                        }
 
                         System.out.println(employee.empFirstName.get(idEdit) + " "
                                 + employee.empLastName.get(idEdit) + " | "
@@ -97,7 +124,12 @@ public class Main {
                     if (idDismiss > employee.empID.size()) {
                         System.out.println("Error! Employee not found!");
                     } else {
-                        employee.empStatus.set(idDismiss, "dismiss");
+                        try {
+                            employee.empStatus.set(idDismiss, "dismiss");
+                        }
+                        catch (InputMismatchException e) {
+                            System.out.println(e);
+                        }
                         System.out.println(employee.empFirstName.get(idDismiss) + " "
                                 + employee.empLastName.get(idDismiss)
                                 + " successfully dismissed! ");
@@ -106,8 +138,8 @@ public class Main {
                 case 0:
                     System.out.println("Bye!");
                     exit = false;
+                    break;
             }
         }
     }
 }
-
