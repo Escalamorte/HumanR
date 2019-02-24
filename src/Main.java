@@ -39,6 +39,7 @@ public class Main {
                                 System.out.print("\n" + employee.empID.get(i));
                                 System.out.print("\t" + " | " + employee.empFirstName.get(i) + " ");
                                 System.out.print(employee.empLastName.get(i));
+                                System.out.print("\t" + " | " + employee.empPhone.get(i));
                                 System.out.print("\t" + " | " + employee.empSalary.get(i));
                                 System.out.print("\t" + " | " + employee.empStatus.get(i));
                             }
@@ -53,6 +54,8 @@ public class Main {
                     String firstName = scanner.next();
                     System.out.println("Enter Last name: ");
                     String lastName = scanner.next();
+                    System.out.println("Phone: ");
+                    String phone = scanner.next();
                     System.out.println("Enter Salary: ");
                     double salary;
                         do {
@@ -71,6 +74,7 @@ public class Main {
                     employee.empID.add(employee.empID.size() + 1);
                     employee.empFirstName.add(firstName);
                     employee.empLastName.add(lastName);
+                    employee.empPhone.add(phone);
                     employee.empSalary.add(salary);
                     employee.empStatus.add("active");
                     }
