@@ -100,6 +100,8 @@ public class Main {
                             employee.empFirstName.set(idEdit, scanner.next());
                             System.out.println("Enter Last name: ");
                             employee.empLastName.set(idEdit, scanner.next());
+                            System.out.println("Enter Phone number: ");
+                            employee.empPhone.set(idEdit, scanner.next());
                             System.out.println("Enter Salary: ");
                             employee.empSalary.set(idEdit, scanner.nextDouble());
                         }
