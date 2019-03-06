@@ -3,149 +3,150 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("***Welcome to HR System!***");
-
-        Employee employee = new Employee();
-        boolean exit = true;
-        while (exit) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("\nTo view employees list press 1");
-            System.out.println("To add new employees press 2");
-            System.out.println("To edit employee information press 3");
-            System.out.println("To calculate net salary press 4");
-            System.out.println("To dismiss employee press 5");
-            System.out.println("To exit press 0");
+        LoginForm.run();
 
 
-            int whatToDo;
-            do {
-                while (!scanner.hasNextInt()) {
-                    System.out.println("Error! Choose from above");
-                    scanner.next();
-                }
-                whatToDo = scanner.nextInt();
-                if (whatToDo < 0 || whatToDo > 5) {
-                    System.out.println("Error! Choose from above");
-                }
-            } while (whatToDo < 0 || whatToDo > 5);
-
-            switch (whatToDo) {
-                case 1: //list emp
-                    if (employee.empID.size() == 0) {
-                        System.out.println("Employee List is empty!");
-                    } else {
-                        for (int i = 0; i <= employee.empID.size() - 1; i++) {
-                            try {
-                                System.out.print("\n" + employee.empID.get(i));
-                                System.out.print("\t" + " | " + employee.empFirstName.get(i) + " ");
-                                System.out.print(employee.empLastName.get(i));
-                                System.out.print("\t" + " | " + employee.empPhone.get(i));
-                                System.out.print("\t" + " | " + employee.empSalary.get(i));
-                                System.out.print("\t" + " | " + employee.empStatus.get(i));
-                            }
-                            catch (ArrayIndexOutOfBoundsException arr) {
-                                System.out.println(arr);
-                            }
-                        }
-                    }
-                    break;
-                case 2: //add emp
-                    System.out.println("Enter First name: ");
-                    String firstName = scanner.next();
-                    System.out.println("Enter Last name: ");
-                    String lastName = scanner.next();
-                    System.out.println("Phone: ");
-                    String phone = scanner.next();
-                    System.out.println("Enter Salary: ");
-                    double salary;
-                        do {
-                            while (!scanner.hasNextDouble()) {
-                                System.out.println("Error! Enter correct value");
-                                scanner.next();
-                            }
-                            salary = scanner.nextDouble();
-                            if (salary < 0) {
-                                System.out.println("Error! Salary must be greater 0");
-                            }
-                        } while (salary < 0);
-
-
-                    try {
-                    employee.empID.add(employee.empID.size() + 1);
-                    employee.empFirstName.add(firstName);
-                    employee.empLastName.add(lastName);
-                    employee.empPhone.add(phone);
-                    employee.empSalary.add(salary);
-                    employee.empStatus.add("active");
-                    }
-                    catch (InputMismatchException inp) {
-                        System.out.println(inp);
-                    }
-
-                    System.out.println("Employee " + employee.empFirstName.get(employee.empID.size() - 1) + " "
-                            + employee.empLastName.get(employee.empID.size() - 1)
-                            + " with salary "
-                            + employee.empSalary.get(employee.empID.size() - 1)
-                            + " successfully added to ID "
-                            + employee.empID.get(employee.empID.size() - 1));
-                    break;
-                case 3: //edit emp
-                    System.out.println("Enter employee ID to edit:");
-                    int idEdit = scanner.nextInt() - 1;
-                    if (idEdit > employee.empID.size()) {
-                        System.out.println("Error. Employee ID not found!");
-                    } else {
-                        try {
-                            System.out.println("Enter First name: ");
-                            employee.empFirstName.set(idEdit, scanner.next());
-                            System.out.println("Enter Last name: ");
-                            employee.empLastName.set(idEdit, scanner.next());
-                            System.out.println("Enter Phone number: ");
-                            employee.empPhone.set(idEdit, scanner.next());
-                            System.out.println("Enter Salary: ");
-                            employee.empSalary.set(idEdit, scanner.nextDouble());
-                        }
-                        catch (InputMismatchException e) {
-                            System.out.println(e);
-                        }
-
-                        System.out.println(employee.empFirstName.get(idEdit) + " "
-                                + employee.empLastName.get(idEdit) + " | "
-                                + employee.empSalary.get(idEdit)
-                                + " successfully edited! ");
-                    }
-                    break;
-                case 4: // calculate Net Salary
-                    NetSal net = new NetSal();
-                    for (int i = 0; i <= employee.empID.size() - 1; i++) {
-                        System.out.print("\n" + employee.empID.get(i) + " | ");
-                        System.out.print(employee.empFirstName.get(i) + " ");
-                        System.out.print(employee.empLastName.get(i) + " | ");
-                        System.out.print(net.calcSal(employee.empSalary.get(i)));
-                    }
-                    break;
-                case 5: //dismiss
-                    System.out.println("Enter employee ID to dismiss:");
-                    int idDismiss = scanner.nextInt() - 1;
-                    if (idDismiss > employee.empID.size()) {
-                        System.out.println("Error! Employee not found!");
-                    } else {
-                        try {
-                            employee.empStatus.set(idDismiss, "dismiss");
-                        }
-                        catch (InputMismatchException e) {
-                            System.out.println(e);
-                        }
-                        System.out.println(employee.empFirstName.get(idDismiss) + " "
-                                + employee.empLastName.get(idDismiss)
-                                + " successfully dismissed! ");
-                    }
-                    break;
-                case 0:
-                    System.out.println("Bye!");
-                    exit = false;
-                    break;
-            }
-        }
+//        Employee employee = new Employee();
+//        boolean exit = true;
+//        while (exit) {
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("\nTo view employees list press 1");
+//            System.out.println("To add new employees press 2");
+//            System.out.println("To edit employee information press 3");
+//            System.out.println("To calculate net salary press 4");
+//            System.out.println("To dismiss employee press 5");
+//            System.out.println("To exit press 0");
+//
+//
+//            int whatToDo;
+//            do {
+//                while (!scanner.hasNextInt()) {
+//                    System.out.println("Error! Choose from above");
+//                    scanner.next();
+//                }
+//                whatToDo = scanner.nextInt();
+//                if (whatToDo < 0 || whatToDo > 5) {
+//                    System.out.println("Error! Choose from above");
+//                }
+//            } while (whatToDo < 0 || whatToDo > 5);
+//
+//            switch (whatToDo) {
+//                case 1: //list emp
+//                    if (employee.empID.size() == 0) {
+//                        System.out.println("Employee List is empty!");
+//                    } else {
+//                        for (int i = 0; i <= employee.empID.size() - 1; i++) {
+//                            try {
+//                                System.out.print("\n" + employee.empID.get(i));
+//                                System.out.print("\t" + " | " + employee.empFirstName.get(i) + " ");
+//                                System.out.print(employee.empLastName.get(i));
+//                                System.out.print("\t" + " | " + employee.empPhone.get(i));
+//                                System.out.print("\t" + " | " + employee.empSalary.get(i));
+//                                System.out.print("\t" + " | " + employee.empStatus.get(i));
+//                            }
+//                            catch (ArrayIndexOutOfBoundsException arr) {
+//                                System.out.println(arr);
+//                            }
+//                        }
+//                    }
+//                    break;
+//                case 2: //add emp
+//                    System.out.println("Enter First name: ");
+//                    String firstName = scanner.next();
+//                    System.out.println("Enter Last name: ");
+//                    String lastName = scanner.next();
+//                    System.out.println("Phone: ");
+//                    String phone = scanner.next();
+//                    System.out.println("Enter Salary: ");
+//                    double salary;
+//                        do {
+//                            while (!scanner.hasNextDouble()) {
+//                                System.out.println("Error! Enter correct value");
+//                                scanner.next();
+//                            }
+//                            salary = scanner.nextDouble();
+//                            if (salary < 0) {
+//                                System.out.println("Error! Salary must be greater 0");
+//                            }
+//                        } while (salary < 0);
+//
+//
+//                    try {
+//                    employee.empID.add(employee.empID.size() + 1);
+//                    employee.empFirstName.add(firstName);
+//                    employee.empLastName.add(lastName);
+//                    employee.empPhone.add(phone);
+//                    employee.empSalary.add(salary);
+//                    employee.empStatus.add("active");
+//                    }
+//                    catch (InputMismatchException inp) {
+//                        System.out.println(inp);
+//                    }
+//
+//                    System.out.println("Employee " + employee.empFirstName.get(employee.empID.size() - 1) + " "
+//                            + employee.empLastName.get(employee.empID.size() - 1)
+//                            + " with salary "
+//                            + employee.empSalary.get(employee.empID.size() - 1)
+//                            + " successfully added to ID "
+//                            + employee.empID.get(employee.empID.size() - 1));
+//                    break;
+//                case 3: //edit emp
+//                    System.out.println("Enter employee ID to edit:");
+//                    int idEdit = scanner.nextInt() - 1;
+//                    if (idEdit > employee.empID.size()) {
+//                        System.out.println("Error. Employee ID not found!");
+//                    } else {
+//                        try {
+//                            System.out.println("Enter First name: ");
+//                            employee.empFirstName.set(idEdit, scanner.next());
+//                            System.out.println("Enter Last name: ");
+//                            employee.empLastName.set(idEdit, scanner.next());
+//                            System.out.println("Enter Phone number: ");
+//                            employee.empPhone.set(idEdit, scanner.next());
+//                            System.out.println("Enter Salary: ");
+//                            employee.empSalary.set(idEdit, scanner.nextDouble());
+//                        }
+//                        catch (InputMismatchException e) {
+//                            System.out.println(e);
+//                        }
+//
+//                        System.out.println(employee.empFirstName.get(idEdit) + " "
+//                                + employee.empLastName.get(idEdit) + " | "
+//                                + employee.empSalary.get(idEdit)
+//                                + " successfully edited! ");
+//                    }
+//                    break;
+//                case 4: // calculate Net Salary
+//                    NetSal net = new NetSal();
+//                    for (int i = 0; i <= employee.empID.size() - 1; i++) {
+//                        System.out.print("\n" + employee.empID.get(i) + " | ");
+//                        System.out.print(employee.empFirstName.get(i) + " ");
+//                        System.out.print(employee.empLastName.get(i) + " | ");
+//                        System.out.print(net.calcSal(employee.empSalary.get(i)));
+//                    }
+//                    break;
+//                case 5: //dismiss
+//                    System.out.println("Enter employee ID to dismiss:");
+//                    int idDismiss = scanner.nextInt() - 1;
+//                    if (idDismiss > employee.empID.size()) {
+//                        System.out.println("Error! Employee not found!");
+//                    } else {
+//                        try {
+//                            employee.empStatus.set(idDismiss, "dismiss");
+//                        }
+//                        catch (InputMismatchException e) {
+//                            System.out.println(e);
+//                        }
+//                        System.out.println(employee.empFirstName.get(idDismiss) + " "
+//                                + employee.empLastName.get(idDismiss)
+//                                + " successfully dismissed! ");
+//                    }
+//                    break;
+//                case 0:
+//                    System.out.println("Bye!");
+//                    exit = false;
+//                    break;
+//            }
+//        }
     }
 }
