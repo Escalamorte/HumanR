@@ -11,6 +11,7 @@ public class LoginForm extends JDialog{
         setContentPane(contentPane);
         setModal(true);
         setTitle("HumanR v2");
+        setLocation(400, 200);
         getRootPane().setDefaultButton(login);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 

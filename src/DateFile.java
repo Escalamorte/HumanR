@@ -4,15 +4,15 @@ import java.io.IOException;
 
 class DateFile {
     private static String fileName = "data";
-    static private String dir = System.getProperty("user.dir");
-    private static String fullName = dir + "\\src" + File.separator + fileName ;
+    private static String dir = System.getProperty("user.dir");
+    private static String fullName = dir + "\\src" + File.separator + fileName;
     private static File data = new File(fullName);
 
     private static void createDataFile () {
         if(!data.exists()) {
             try{
                 if(data.createNewFile()) {
-                    System.out.println("created");
+                    System.out.println("File created");
                 } else {
                     System.out.println("Error");
                 }

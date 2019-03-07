@@ -4,7 +4,6 @@ import java.awt.event.*;
 public class MainForm extends JDialog {
     private JPanel contentPane;
     private JTabbedPane tabbedPane1;
-    private JTable table1;
     private JFormattedTextField idField;
     private JFormattedTextField firstNameField;
     private JFormattedTextField lastNameField;
@@ -17,13 +16,19 @@ public class MainForm extends JDialog {
     private JRadioButton femaleRadioButton;
     private JPanel genderPanel;
     private JLabel messageLabel;
+    private JTable empTable;
+    private JScrollPane jScrollPane;
+
     private JLabel lastName;
     private JLabel phone;
     private JLabel salary;
 
-    MainForm() {
+    private MainForm() {
         setContentPane(contentPane);
         setModal(true);
+        setLocation(400, 200);
+        createUIComponents();
+
 
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(maleRadioButton);
@@ -39,12 +44,12 @@ public class MainForm extends JDialog {
         });
     }
 
-    private void employeesList(){
-        Object[] headers = {"ID", "Name", "Phone", "Salary", "Status"};
-
-        //table1 = new JTable(Employee.employees.getClass(), headers);
-
-    }
+//    private void employeesList(){
+//        String[] headers = new String[]{"ID", "Name", "Phone"};
+//        Object[][] data = {{"John", "Smith", "1112221"}};
+//        JTable empTable = new JTable(data, headers);
+//        jScrollPane = new JScrollPane(empTable);
+//    }
 
     private void hire() {
         int id = Employee.employees.size() + 1;
@@ -57,11 +62,16 @@ public class MainForm extends JDialog {
         String phone = comboBox1.getSelectedItem() + phoneField.getText();
         Double salary = Double.parseDouble(salaryField.getText());
         String status = "active";
+        try {
+            Employee employee = new Employee(id, name, birthday, gender, phone, salary, status);
+            String result = employee.hire();
 
-        Employee employee = new Employee(id, name, birthday, gender, phone, salary, status);
-        String result = employee.hire();
-        messageLabel.setText(result);
-        idField.setText(String.valueOf(Employee.employees.size() + 1));
+            messageLabel.setText(result);
+        }catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+            idField.setText(String.valueOf(Employee.employees.size() + 1));
+
         eraseFields();
     }
 
@@ -83,5 +93,11 @@ public class MainForm extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void createUIComponents() {
+        String[] headers = new String[]{"ID", "Name", "Phone"};
+        Object[][] data = {{"John", "Smith", "1112221"}};
+        empTable = new JTable(data, headers);
     }
 }
