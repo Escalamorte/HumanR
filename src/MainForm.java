@@ -96,8 +96,8 @@ public class MainForm extends JDialog {
     }
 
     private void createUIComponents() {
-        String[] headers = new String[]{"ID", "Name", "Phone"};
-        Object[][] data = {{"John", "Smith", "1112221"}};
+        String[] headers = new String[]{"ID", "Name", "Birthday", "Gender", "Phone", "Salary"};
+        Object[][] data = {{"0001", "John Smith", "22.12.1989", "M", "1112221", "500.00"}};
         empTable = new JTable(data, headers);
     }
 }
