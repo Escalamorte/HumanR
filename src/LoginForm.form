@@ -61,7 +61,8 @@
               </grid>
             </constraints>
             <properties>
-              <font name="Century Gothic"/>
+              <font/>
+              <text value=""/>
             </properties>
           </component>
           <component id="9681e" class="javax.swing.JButton" binding="login">

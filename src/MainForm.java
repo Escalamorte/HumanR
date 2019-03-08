@@ -18,7 +18,6 @@ public class MainForm extends JDialog {
     private JLabel messageLabel;
     private JTable empTable;
     private JScrollPane jScrollPane;
-
     private JLabel lastName;
     private JLabel phone;
     private JLabel salary;
@@ -28,7 +27,6 @@ public class MainForm extends JDialog {
         setModal(true);
         setLocation(400, 200);
         createUIComponents();
-
 
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(maleRadioButton);
@@ -43,13 +41,6 @@ public class MainForm extends JDialog {
             }
         });
     }
-
-//    private void employeesList(){
-//        String[] headers = new String[]{"ID", "Name", "Phone"};
-//        Object[][] data = {{"John", "Smith", "1112221"}};
-//        JTable empTable = new JTable(data, headers);
-//        jScrollPane = new JScrollPane(empTable);
-//    }
 
     private void hire() {
         int id = Employee.employees.size() + 1;
@@ -83,11 +74,6 @@ public class MainForm extends JDialog {
         salaryField.setText("");
     }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
-
     static void run () {
         MainForm dialog = new MainForm();
         dialog.pack();
@@ -97,7 +83,14 @@ public class MainForm extends JDialog {
 
     private void createUIComponents() {
         String[] headers = new String[]{"ID", "Name", "Birthday", "Gender", "Phone", "Salary"};
-        Object[][] data = {{"0001", "John Smith", "22.12.1989", "M", "1112221", "500.00"}};
+        int empId = Employee.getEmpId();
+        String empName = Employee.getEmpName();
+        String empBirthday = Employee.getEmpBirthday();
+        String empGender = Employee.getEmpGender();
+        String empPhone = Employee.getEmpPhone();
+        Double empSalary = Employee.getEmpSalary();
+        String empStatus = Employee.getEmpStatus();
+        Object[][] data = {{empId, empName, empBirthday, empGender, empPhone, empSalary, empStatus}};
         empTable = new JTable(data, headers);
     }
 }
