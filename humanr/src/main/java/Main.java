@@ -1,9 +1,12 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        LoginForm.run();
+        DateFile.readData();
+        try {
+            LoginForm.run();
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+
 
 
 //        Employee employee = new Employee();

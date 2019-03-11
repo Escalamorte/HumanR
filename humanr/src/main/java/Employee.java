@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Employee {
+class Employee {
     private static int empId;
     private static String empName;
     private static String empBirthday;
@@ -11,17 +11,18 @@ public class Employee {
     static ArrayList<Employee> employees = new ArrayList<>();
 
     Employee(int id, String name, String birthday, String gender, String phone, Double salary, String status) {
-        this.empId = id;
-        this.empName = name;
-        this.empBirthday = birthday;
-        this.empGender = gender;
-        this.empPhone = phone;
-        this.empSalary = salary;
-        this.empStatus = status;
+        empId = id;
+        empName = name;
+        empBirthday = birthday;
+        empGender = gender;
+        empPhone = phone;
+        empSalary = salary;
+        empStatus = status;
     }
 
     String hire () {
         employees.add(new Employee(empId, empName, empBirthday, empGender, empPhone, empSalary, empStatus));
+        DateFile.createDataFile();
         DateFile.editData();
         getEmpId();
         getEmpName();

@@ -2,18 +2,20 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class LoginForm extends JDialog{
-    private JPanel contentPane;
-    private JPasswordField passwordField1;
+    private JPanel contentPanel;
     private JFormattedTextField loginTextField1;
     private JButton login;
+    private JLabel logoLabel;
 
-    LoginForm() {
-        setContentPane(contentPane);
+
+    private LoginForm() {
+        setContentPane(contentPanel);
         setModal(true);
         setTitle("HumanR v2");
         setLocation(400, 200);
         getRootPane().setDefaultButton(login);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {login(); }
@@ -44,8 +46,12 @@ public class LoginForm extends JDialog{
     }
 
     static void run() {
-        LoginForm dialog = new LoginForm();
-        dialog.pack();
-        dialog.setVisible(true);
+        try {
+            LoginForm dialog = new LoginForm();
+            dialog.pack();
+            dialog.setVisible(true);
+        } catch (NullPointerException e) {
+            throw new IllegalStateException("null argument", e);
+        }
     }
 }

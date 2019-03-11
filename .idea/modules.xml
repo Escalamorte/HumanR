@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HumanR.iml" filepath="$PROJECT_DIR$/HumanR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/humanr/humanr.iml" filepath="$PROJECT_DIR$/humanr/humanr.iml" />
     </modules>
   </component>
 </project>
