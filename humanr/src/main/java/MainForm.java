@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.event.*;
 
 public class MainForm extends JDialog {
@@ -18,6 +20,8 @@ public class MainForm extends JDialog {
     private JLabel messageLabel;
     private JTable empTable;
     private JScrollPane jScrollPane;
+    private JFormattedTextField formattedTextField1;
+    private JButton searchButton;
     private JLabel lastName;
     private JLabel phone;
     private JLabel salary;
@@ -27,6 +31,7 @@ public class MainForm extends JDialog {
         setModal(true);
         setLocation(400, 200);
         createUIComponents();
+        setTitle("HumanR | Employees");
 
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(maleRadioButton);
@@ -35,11 +40,24 @@ public class MainForm extends JDialog {
 
         idField.setText(String.valueOf(Employee.employees.size() + 1));
 
+        hireButton.setEnabled(false);
+
         hireButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 hire();
             }
         });
+    }
+
+    private void hireButtonActivator() {
+        if (firstNameField.getText().trim().length() == 0 ||
+                lastNameField.getText().trim().length() == 0 ||
+                birthdayField.getText().trim().length() == 0 ||
+                phoneField.getText().trim().length() == 0 ||
+                salaryField.getText().trim().length() == 0){ hireButton.setEnabled(false);
+        } else {
+            hireButton.setEnabled(true);
+        }
     }
 
     private void hire() {

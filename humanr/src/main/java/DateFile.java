@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 class DateFile {
-    private static String fileName = "data.txt";
+    private static String fileName = "data.csv";
     private static String dir = System.getProperty("user.dir");
     private static String fullName = dir + "\\humanr\\src\\main\\resources" + File.separator + fileName;
     private static File data = new File(fullName);
